@@ -1,0 +1,93 @@
+.toolbar {
+    overflow: visible;
+}
+
+// ios specific style
+.platform-ios {
+    drop-down-title {
+        .drop-down-header-container {
+            top: $toolbar-ios-height + $cordova-ios-statusbar-padding;
+        }
+    }
+}
+
+// windows specific style
+.platform-windows {
+    drop-down-title {
+        .drop-down-header-container {
+            top: $toolbar-wp-height;
+        }
+    }
+}
+
+// android specific style
+.platform-android {
+    drop-down-title {
+        .drop-down-header-container {
+            top: $toolbar-md-height;
+        }
+    }
+}
+
+drop-down-title {
+    .drop-down-header-container {
+        position: absolute;
+        max-height: 0;
+        background-color: if(map-get($colors, drop-down-title), map-get($colors, drop-down-title), rgba(0, 62, 96, 0.8));
+        width: 90vw;
+        margin: 0 5vw;
+        z-index: 5;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        overflow: auto;
+        box-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px;
+
+        &.open {
+            animation: drop-down-header-container-open-animation 0.4s forwards;
+            animation-timing-function: ease-out;
+        }
+        &.close {
+            animation: drop-down-header-container-close-animation 0.3s forwards;
+            animation-timing-function: ease-out;
+        }
+
+        ion-list {
+            margin: 0;
+            ion-item {
+                background: none;
+                padding-left: 0;
+                color: if(map-get($colors, drop-down-title-text), map-get($colors, drop-down-title-text), white);
+                &:active {
+                    background-color: if(map-get($colors, drop-down-title-active), map-get($colors, drop-down-title-active), #2d2d2d);
+                }
+                &.item-block:first-child{
+                    border-top: none;
+                }
+            }
+        }
+    }
+
+    @keyframes drop-down-header-container-open-animation {
+        0% {
+            max-height: 0;
+        }
+        95% {
+            max-height: 50.5vh;
+        }
+        100% {
+            max-height: 50vh;
+        }
+    }
+    @keyframes drop-down-header-container-close-animation {
+        0% {
+            max-height: 50vh;
+        }
+        5% {
+            max-height: 50.5vh;
+        }
+        100% {
+            max-height: 0;
+        }
+    }
+}
+

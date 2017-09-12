@@ -1,0 +1,9 @@
+<!-- Generated template for the DropDownTitleComponent component -->
+<ion-title (press)="onToggleList()" class="title">
+    {{title}}
+</ion-title>
+
+
+<div class="drop-down-header-container" [ngClass]="{ open: showList , close : !showList}">
+    <ng-content></ng-content>
+</div>
